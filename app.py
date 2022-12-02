@@ -10,12 +10,11 @@ def post():
     path = os.path.abspath(f'data/{req["file_name"]}')
     with open(path, 'r', encoding='utf-8') as file:
         method = getattr(Query, req['cmd1'], "Такого метода нет")
-        method = method(req['value1'], file)
-        if req.get('cmd2', None):
+        result = method(req['value1'], file)
+        if 'cmd2' in req:
             method2 = getattr(Query, req['cmd2'], "Такого метода нет")
-            method2 = method2(req['value2'], list(method))
-            return jsonify(list(method2))
-        return jsonify(list(method))
+            result = method2(req['value2'], list(result))
+        return jsonify(list(result))
 
 
 if __name__ == '__main__':

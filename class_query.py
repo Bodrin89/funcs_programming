@@ -2,28 +2,28 @@
 
 class Query:
 
-    @classmethod
-    def filter(cls, value, file):
+    @staticmethod
+    def filter(value, file):
         """Фильтрация по значению"""
         return filter(lambda x: value in x, file)
 
-    @classmethod
-    def map(cls, value, data):
+    @staticmethod
+    def map(value, data):
         """Вывод данных по номеру колонки"""
         return map(lambda x: x.split(' ')[int(value)], data)
 
-    @classmethod
-    def unique(cls, value, data):
+    @staticmethod
+    def unique(value, data):
         return set(data)
 
-    @classmethod
-    def sort(cls, value, data):
+    @staticmethod
+    def sort(value, data):
         """Сортировка"""
         reversed = value == 'asc'
         return sorted(data, reverse=reversed)
 
-    @classmethod
-    def limit(cls, value, data):
+    @staticmethod
+    def limit(value, data):
         """Лимит выводимых строк"""
         return data[:int(value)]
 
