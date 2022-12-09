@@ -1,16 +1,16 @@
 import re
-from typing import Iterable, TextIO, Union
+from typing import Iterable, TextIO, Union, Iterator
 
 
 class Query:
 
     @staticmethod
-    def filter(value: str, data: TextIO) -> filter:
+    def filter(value: str, data: TextIO) -> Iterator[str]:
         """Фильтрация по значению"""
         return filter(lambda x: value in x, data)
 
     @staticmethod
-    def map(value: str, data: Union[TextIO, Iterable]) -> map:
+    def map(value: str, data: Union[TextIO, Iterable]) -> Iterator[str]:
         """Вывод данных по номеру колонки"""
         return map(lambda x: x.split(' ')[int(value)], data)
 
